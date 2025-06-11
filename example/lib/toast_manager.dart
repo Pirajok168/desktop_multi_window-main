@@ -69,22 +69,22 @@ class ToastManager {
     }
   }
 
-  void showNotification(RTToastModel model) {
+  void showNotification(RTToastModel model, double devicePixelRatio) {
     _notificationQueue.addLast(model);
-    _startProcessing(model);
+    _startProcessing(model, devicePixelRatio);
   }
 
-  void _startProcessing(RTToastModel model) {
+  void _startProcessing(RTToastModel model, double devicePixelRatio) {
     if (_isProcessing) return;
     _isProcessing = true;
-    _processNotifications(model);
+    _processNotifications(model, devicePixelRatio);
   }
 
-  void _processNotifications(RTToastModel model) async {
+  void _processNotifications(RTToastModel model, double devicePixelRatio,) async {
     while (_notificationQueue.isNotEmpty) {
       RTToastModel modell = _notificationQueue.removeFirst();
 
-      await _showNotification(modell);
+      await _showNotification(modell,devicePixelRatio);
 
       await _checkReadyNext();
 
@@ -108,7 +108,10 @@ class ToastManager {
     }
   }
 
-  Future<void> _showNotification(RTToastModel model) async {
+  Future<void> _showNotification(
+      RTToastModel model,
+      double devicePixelRatio,
+      ) async {
     if (_notifications.length >= maxNotifications) {
       await _removeAt(0, false);
     }

@@ -50,11 +50,13 @@ class _ExampleMainWindowState extends State<_ExampleMainWindow> {
           children: [
             TextButton(
               onPressed: () async {
-                ToastManager.instance.showNotification(const ToastSuccessDownloadGame(
-                  gameName: 'Balarto',
-                  imageUrl:
-                  'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2834460/header.jpg?t=1708456012',
-                ),);
+                ToastManager.instance.showNotification(
+                    const ToastSuccessDownloadGame(
+                      gameName: 'Balarto',
+                      imageUrl:
+                          'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2834460/header.jpg?t=1708456012',
+                    ),
+                    MediaQuery.of(context).devicePixelRatio);
               },
               child: const Text('Create a new World!'),
             ),
@@ -149,7 +151,6 @@ class _ExampleSubWindowState extends State<_ExampleSubWindow> {
     _isDragging = false;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -192,14 +193,12 @@ class _ExampleSubWindowState extends State<_ExampleSubWindow> {
               },
               child: const Text('Close this window'),
             ),
-
             TextButton(
               onPressed: () async {
                 widget.windowController.setNewReact(400, 400);
               },
               child: const Text('Resize Window'),
             ),
-
             TextButton(
               onPressed: () async {
                 widget.windowController.setNewReact(400, 540);
