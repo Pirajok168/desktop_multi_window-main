@@ -1,0 +1,5 @@
+
+enum ExternalWindowType {
+  settings,
+  notification,
+}
